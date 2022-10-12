@@ -1,11 +1,11 @@
-import "../assets/css/ItemListContainer.css";
+import "../assets/css/Styles.css";
 
 const ItemListContainer = ({greeting}) => {
-    return (
-        <div className="greeting">
-            <h3>{greeting}</h3>
-        </div>
-      );
+  return (
+    <div className="greeting">
+      <h3>{greeting}</h3>
+    </div>
+  );
 }
 
-export default ItemListContainer
+export default ItemListContainer;

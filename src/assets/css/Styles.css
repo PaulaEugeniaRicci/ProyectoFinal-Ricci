@@ -1,0 +1,15 @@
+.greeting{
+  padding-top: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.text{
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.text:hover{
+  color: #99a9df;
+}

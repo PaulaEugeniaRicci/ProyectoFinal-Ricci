@@ -1,0 +1,1 @@
+{ /** Detalle foto, descripcion, foto y precio*/}
