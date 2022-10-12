@@ -2,10 +2,9 @@ import { useState } from 'react';
 
 const ItemCount = ({ stock }) => {
 
-  // Estilos del contador
   const styles = {
     symbol: "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 cursor-pointer text-gray-400 border border-gray-400 w-7 h-7 flex items-center justify-center p-0.5",
-    counter: "border border-x-1 border-x-white border-y-gray-400 text-gray-600 h-full text-center w-6 p-0.5",
+    counter: "border border-x-1 border-x-white border-y-gray-400 text-gray-600 h-full text-center w-24 p-0.5",
   }
 
   const [counter, setCounter] = useState(1)
@@ -41,8 +40,8 @@ const ItemCount = ({ stock }) => {
             </span>
           </div>
         </div>
+        <button className="btn select-none uppercase text-sm text-white bg-black p-3">Agregar a mi compra</button>
       </div>
-      <button className="btn select-none uppercase text-sm text-white bg-black p-3 mt-8">Agregar a mi compra</button>
     </div>
   );
 }

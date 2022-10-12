@@ -1,35 +1,17 @@
-import { Link } from 'react-router-dom'
-{/**id, title, description, price, pictureUrl */}
+import React from 'react';
+import { Link } from "react-router-dom";
 
-const Item = ({item}) => {
-  const styles = {
-    name: "font-medium text-xs text-gray-700 tracking-wider leading-loose uppercase",
-  }
-
+const Item = ( {id, title, price, pictureUrl} ) => {
   return (
-    <>
-      {/* Contenedor de la card */}
-      <div key={item.id} className="group relative overflow-hidden font-body">
-        {/* Imagenes */}
-          <Link to={`/item/${item.id}`}>
-            <div className="w-full aspect-w-5 aspect-h-7 overflow-hidden">
-              <img src={item.imgA} alt={item.name} className="duration-700 group-hover:opacity-0"/>
-              <img src={item.imgD} alt={item.name} className="absolute top-0 z-[-5]"/>
-            </div>
-          </Link>
-
-        {/* Descripción */}
-          <div className="flex flex-col justify-start p-3">
-            <h3 className={styles.name}>
-              <Link to={`/item/${item.id}`}> {item.name}</Link>
-            </h3>
-            <p className={styles.price}>
-              <Link to={`/item/${item.id}`}>{ item.price}</Link>
-            </p>
-          </div>
+    <Link to={`/item/${id}`}>
+      <div className='m-5 pt-2 text-center uppercase'>
+        <div className='min-h-max'><img src={pictureUrl} alt={title}/></div>
+        <div><p className="font-semibold pt-2">{title}</p></div>
+        <div><p className="">${price}</p></div>
+        <button className="btn select-none uppercase text-sm text-white bg-black py-3 px-5 mt-8">Descubrir</button>
       </div>
-    </>
+    </Link>
   )
 }
 
-export default Item
+export default Item;
