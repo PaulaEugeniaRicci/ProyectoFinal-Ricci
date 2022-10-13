@@ -7,11 +7,21 @@ const ItemDetailContainer = ( ) => {
 
   const { id: itemId } = useParams()
   const [item, setItem] = useState([])
+  const [loading, setloading] = useState(true)
+
+  const Loading = () => {
+    return (
+      <div className='flex justify-center items-center h-80'>
+        <strong className='text-center'>Cargando...</strong>
+      </div>
+    )
+  }
 
   useEffect(() => {
     getItemDetails().then( response => {
       console.log(response)
       setItem( response )
+      setloading(false)
     })
   }, [])
   
@@ -25,7 +35,7 @@ const ItemDetailContainer = ( ) => {
 
   return (
     <div className="">
-      {<ItemDetail item={item}/>}
+      {loading ? <Loading/> : <ItemDetail item={item}/>}
     </div>
   )
 }
