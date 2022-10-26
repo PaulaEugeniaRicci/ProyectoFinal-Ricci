@@ -40,7 +40,7 @@ const ItemCount = ({ stock }) => {
             </span>
           </div>
         </div>
-        <button className="btn select-none uppercase text-sm text-white bg-black p-3">Agregar a mi compra</button>
+       
       </div>
     </div>
   );
