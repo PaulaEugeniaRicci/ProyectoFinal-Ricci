@@ -10,7 +10,7 @@ const ItemList = ( ) => {
   const [items, setItems] = useState([])
   
   useEffect(()=>{
-    if (id !=='masculino' && id !=='femenino'){
+    if (id !=='masculino' && id !=='femenino' && id !=='colognes' && id !=='exceptions'){
       const itemCollection = id
       ? query(collection(db, "items"), where("title", ">=", id), where("title", "<=", id+ '\uf8ff'))
       : collection(db, "items")

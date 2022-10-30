@@ -60,8 +60,8 @@ const NavBar = () => {
             </ul>
             <ul>
               <li className={styles.title}><NavLink to=''>Productos Exclusivos</NavLink></li>
-              <li className={styles.option}><NavLink to=''>Les Exceptions</NavLink></li>
-              <li className={styles.option}><NavLink to=''>Mugler Cologne</NavLink></li>
+              <li className={styles.option}><NavLink to={`/category/${'exceptions'}`}>Les Exceptions</NavLink></li>
+              <li className={styles.option}><NavLink to={`/category/${'colognes'}`}>Mugler Cologne</NavLink></li>
               <li className={styles.option}><NavLink to=''>Frascos de recarga</NavLink></li>
             </ul>
           </div>
