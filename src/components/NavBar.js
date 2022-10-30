@@ -52,13 +52,11 @@ const NavBar = () => {
               <li className={styles.option}><NavLink to={`/category/${'Angel'}`}>Angel</NavLink></li>
               <li className={styles.option}><NavLink to={`/category/${'Alien'}`}>Alien</NavLink></li>
               <li className={styles.option}><NavLink to={`/category/${'Aura'}`}>Aura Mugler</NavLink></li>
-              <li className={styles.option}><NavLink to=''>Estuches para ella</NavLink></li>
             </ul>
             <ul>
               <li className={styles.title}><NavLink to={`/category/${'masculino'}`}>Fragancias para hombre</NavLink></li>
               <li className={styles.option}><NavLink to={`/category/${'alien Man'}`}>Alien Man</NavLink></li>
               <li className={styles.option}><NavLink to={`/category/${'A Men'}`}>A Men</NavLink></li>
-              <li className={styles.option}><NavLink to=''>Estuches para él</NavLink></li>
             </ul>
             <ul>
               <li className={styles.title}><NavLink to=''>Productos Exclusivos</NavLink></li>
