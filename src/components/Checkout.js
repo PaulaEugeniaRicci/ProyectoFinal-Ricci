@@ -17,7 +17,7 @@ const Checkout = () => {
     button: "focus:outline-none focus:ring-transparent text-center btn select-none uppercase text-sm text-white py-3 px-9 mt-6 w-full nexa"
   }
 
-  const {items, cartLength, getTotal} = useContext(CartContext)
+  const {items, clearCart, cartLength, getTotal} = useContext(CartContext)
   const [idOrder, setIdOrder] = useState("")
   const [showModal, setShowModal] = useState(false)
   const [buyer, setBuyer] = useState({
@@ -27,6 +27,8 @@ const Checkout = () => {
     email: "",
     emailConfirmation: "",
   })
+
+  console.log(idOrder)
 
   const emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i
   const telRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{1,6}$/im
@@ -45,7 +47,7 @@ const Checkout = () => {
     const order = {
       buyer,
       item: items,
-      price: getTotal,
+      price: getTotal(),
       date: orderDate,
     }
     addOrder(order).then(data => {
@@ -81,7 +83,7 @@ const Checkout = () => {
             }
           </div>
 
-          <div className="flex flex-col self-start w-full md:w-1/2 ml-10">
+          <div className="flex flex-col self-start w-full md:w-1/2 md:ml-10 sm:ml-0">
             <div className="flex flex-col border border-gray-200 rounded-lg py-4 px-5 mt-6">
             <h2 className={(styles.title) + " border-b border-gray-200 py-5"}>Resumen de Compra</h2>
               <div className={"flex flex-row justify-between border-b border-gray-200" + (styles.text)}>
@@ -99,9 +101,27 @@ const Checkout = () => {
                 <IoIosArrowBack className="mr-1"/>Volver a carrito
               </Link>
             </div>
-            
           </div>
         </div>            
+      </div>
+    </div>
+
+    <div className={`${showModal ? "flex" : "hidden"} inset-0 fixed w-full h-full bg-gray-500`}>
+      <div className="container mx-auto justify-center items-center px-4 md:px-10 py-20 place-self-center">
+        <div className="bg-white px-3 md:px-4 py-12 flex flex-col justify-center items-center">
+          <h2 className="text-center md:w-9/12 lg:w-7/12 font-bold text-lg nexa-bold">Tu pedido fue aprobado</h2>
+          <p className="mt-6 text-center md:w-9/12 lg:w-7/12">
+            Tu pedido <span className='font-medium'>{idOrder}</span> ya se encuentra en preparación y está próximo a ser despachado. Te enviamos un mail a {(buyer.email).toLowerCase()} con los detalles.
+          </p>
+          <p className='font-bold text-lg pt-6'>
+            ¡<span className="nexa-bold text-center mx-auto">Gracias por tu compra en MUGLER Store</span>!
+          </p>
+          <Link to="/" className="mt-6 flex justify-center">
+            <button onClick={clearCart} className={(styles.button) + " bg-black cursor-pointer"}>
+              Volver al inicio
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   </>
