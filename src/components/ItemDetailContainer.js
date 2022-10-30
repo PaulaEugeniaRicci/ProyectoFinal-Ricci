@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { products } from './data/products';
 import ItemDetail from './ItemDetail';
 import { useParams } from 'react-router-dom';
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase/firebase";
 
 const ItemDetailContainer = ( ) => {
 
@@ -18,6 +19,17 @@ const ItemDetailContainer = ( ) => {
   }
 
   useEffect(() => {
+    const itemRef = doc(db, "items", itemId)
+    getDoc(itemRef).then((snapshot) => {
+      if (snapshot.exists()){
+        setItem({ id: snapshot.id, ...snapshot.data()})
+        setloading(false)
+      }
+    })
+  }, [])
+
+
+  /*useEffect(() => {
     getItemDetails().then( response => {
       console.log(response)
       setItem( response )
@@ -31,7 +43,7 @@ const ItemDetailContainer = ( ) => {
         resolve( products.find( p => p.id === Number(itemId) ) )
       }, 2000);
     })
-  }
+  }*/
 
   return (
     <div className="">

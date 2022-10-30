@@ -1,44 +1,79 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useState } from 'react';
 
-const CartContext = createContext({
-    products: [],
-    addToCart: () => {},
-    clearCart: () => {},
-    count: 0,
-})
-
-//hook personalizado
-const useCart = () => {
-    return useContext(CartContext)
-}
+const CartContext = createContext()
 
 const CartContextProvider = ( {children} ) => {
     
-    const [products, setProducts] = useState([]) 
+    const [items, setItems] = useState([]) 
 
-    const addToCart = (product) => {
-        setProducts ( products => [...products, product] )
+    const addItem = (item, quantity) => {
+        if (isInCart(item.id)) {
+            let index = items.findIndex((index) => (index.id === item.id))
+            let auxCart = [...items]
+            auxCart[index].quantity += quantity
+            setItems(auxCart)
+        } else {
+            const itemToAdd = { ...item, quantity }
+            setItems([...items, itemToAdd])
+        }
+    }
+
+    const removeItem = (id) => {
+        setItems(items.filter((item) => (item.id !== id)))
+    }
+
+    const currencyFormat = Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD"
+    }); 
+
+    const getSubtotal = (price, quantity) => {
+        let subtotal = 0
+        subtotal = subtotal + (price * quantity)
+        return currencyFormat.format(Number(subtotal))
+    }
+
+    const getTotal = () => {
+        let total = 0
+        items.forEach((item) => {
+            total = total + (item.quantity * item.price)
+        })
+        return currencyFormat.format(Number(total))
     }
 
     const clearCart = () => {
-        setProducts([])
+        setItems([])
     }
 
-    const context = {
-        products: products,
-        addToCart: addToCart,
-        clearCart: clearCart,
-        count: products.length,
+    const cartLength = () => {
+        let quantity = 0
+        items.forEach(i => {
+            quantity = quantity + i.quantity
+        })
+        return quantity
     }
+
+    const isInCart = (id) => {
+        return items.some((item) => (item.id === id))
+    } 
 
     return (
-        <CartContext.Provider value={ context }>
-            { children }
-        </CartContext.Provider>
+      <CartContext.Provider 
+        value={{
+          addItem,
+          cartLength,
+          clearCart,
+          getTotal,
+          getSubtotal,
+          items,
+          removeItem
+        }}>
+        {children}
+      </CartContext.Provider>
     )
 }
 
-export { useCart, CartContextProvider }
+export { CartContext, CartContextProvider }
 
 
 

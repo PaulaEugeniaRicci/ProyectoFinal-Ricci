@@ -1,38 +1,45 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import Item from './Item';
-import { products } from './data/products';
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "../firebase/firebase";
 
 const ItemList = ( ) => {
+
   const {id} = useParams();
   const [items, setItems] = useState([])
-
+  
   useEffect(()=>{
-    getProducts().then(response=>{
-        if(!id){
-            setItems(response)
-        } else{
-          console.log(id)
-            const selectedCategory = response.filter(item=>item.category === id);
-            console.log('nuevaLista', selectedCategory)
-            setItems(selectedCategory)
+    if (id !== 'masculino' && id!== 'femenino'){
+      const itemCollection = id
+      ? query(collection(db, "items"), where("title", ">=", id), where("title", "<=", id+ '\uf8ff'))
+      : collection(db, "items")
+      getDocs(itemCollection).then( (snapshot) => {
+        if (snapshot.size === 0 ){
+          console.log("no products")
         }
-    })
+        setItems(snapshot.docs.map((doc) => ({id: doc.id, ...doc.data() })))
+      });
+    }
+    else{
+      const itemCollection = id
+      ? query(collection(db, "items"), where("categoryId", "==", id))
+      : collection(db, "items")
+      getDocs(itemCollection).then( (snapshot) => {
+        if (snapshot.size === 0 ){
+          console.log("no products")
+        }
+        setItems(snapshot.docs.map((doc) => ({id: doc.id, ...doc.data() })))
+      });
+    }
+   
   },[id])
   
-  const getProducts = () => {
-    return new Promise( resolve => {
-      setTimeout(() => {
-        resolve( products )
-      }, 2000);
-    })
-  }
-  
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 max-w-full lg:max-w-7xl m-auto">
-      { items.map( i => <Item key={i.id} {...i}/> ) }
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 max-w-full lg:max-w-7xl m-auto">
+      { items.map((item) => ( <Item key={item.id} item={item}/> ) )}
     </div>
   )
 }
-  
+
 export default ItemList;

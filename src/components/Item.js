@@ -1,16 +1,29 @@
-import React from 'react';
 import { Link } from "react-router-dom";
+import { currencyFormat } from "../helpers/currencyFormat";
 
-const Item = ( {id, title, price, pictureUrl} ) => {
+const Item = ( {item} ) => {
+
+  const styles = {
+    text: "nexa-bold tracking-wider",
+    price: "font-semibold mt-7 text-base tracking-wider",
+    button: "btn select-none uppercase text-sm text-white bg-black py-3 px-9 mt-3 nexa"
+  }
+
   return (
-    <Link to={`/item/${id}`}>
-      <div className='m-5 pt-2 text-center uppercase'>
-        <div className='min-h-max'><img src={pictureUrl} alt={title}/></div>
-        <div><p className="font-semibold pt-2">{title}</p></div>
-        <div><p className="">${price}</p></div>
-        <button className="btn select-none uppercase text-sm text-white bg-black py-3 px-5 mt-8">Descubrir</button>
-      </div>
-    </Link>
+    <div className="group m-5 pt-5">
+      <Link to={`/item/${item.id}`}>
+        <div className='overflow-hidden relative'>
+          <img src={item.image} alt={item.title} className="duration-500 group-hover:opacity-0"/>
+          <img src={item.image2} alt={item.title} className="scale-95 absolute top-0 -z-50"/>
+        </div>
+        <div className='text-center uppercase pt-5'>
+          <div><p className={(styles.text)+" pt-2"}>{item.title}</p></div>
+          <div><p className="text-gray-500 nexa-ligth text-sm">{item.concentration}</p></div>
+          <div><p className={styles.price}>{currencyFormat(item.price)}</p></div>
+          <button className={styles.button}>Descubrir</button>
+        </div>
+      </Link>
+    </div>
   )
 }
 

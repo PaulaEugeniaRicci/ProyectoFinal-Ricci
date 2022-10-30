@@ -7,6 +7,12 @@ import { Link, NavLink } from "react-router-dom";
 
 const NavBar = () => {
 
+  const styles = {
+    title: "uppercase text-sm leading-loose hover:font-bold nexa",
+    option: "text-gray-500 leading-loose hover:font-semibold",
+    container: "absolute z-10 bg-white w-full grid grid-cols-3 gap-4 px-20 pt-4 pb-5 leading-loose border-b border-gray-200"
+  }
+
   const [displayCat, setDisplayCat] = useState(false)
   const [displayMenu, setDisplayMenu] = useState(false)
 
@@ -16,7 +22,7 @@ const NavBar = () => {
         <div className="py-4 mx-6">
           <div className="flex items-center justify-between pt-4 pb-3 px-4">
             <div className="hidden lg:block lg:w-60">
-              <ul className="flex items-center space-x-7 text-white">
+              <ul className="flex items-center space-x-7 text-white nexa">
                 <li className="nav-item p-2">
                   <Link to='/' className="text text-sm">Home</Link>
                 </li>
@@ -39,27 +45,26 @@ const NavBar = () => {
           </div>
         </div>
 
-        <div className={ (displayCat ? "block" : "hidden")} onMouseLeave={() => setDisplayCat(!displayCat)}>
-          <div className="absolute bg-white w-full grid grid-cols-3 gap-4">
+        <div className={ (displayCat ? "block" : "hidden") } onMouseLeave={() => setDisplayCat(!displayCat)} >
+          <div className={styles.container}>
             <ul>
-              <li><NavLink to=''>Fragancias para mujer</NavLink></li>
-              <li><NavLink to=''>Angel</NavLink></li>
-              <li><NavLink to=''>Alien</NavLink></li>
-              <li><NavLink to=''>Aura Mugler</NavLink></li>
-              <li><NavLink to=''>Womanity</NavLink></li>
-              <li><NavLink to=''>Estuches para ella</NavLink></li>
+              <li className={styles.title}><NavLink to={`/category/${'femenino'}`}>Fragancias para mujer</NavLink></li>
+              <li className={styles.option}><NavLink to={`/category/${'Angel'}`}>Angel</NavLink></li>
+              <li className={styles.option}><NavLink to={`/category/${'Alien'}`}>Alien</NavLink></li>
+              <li className={styles.option}><NavLink to={`/category/${'Aura'}`}>Aura Mugler</NavLink></li>
+              <li className={styles.option}><NavLink to=''>Estuches para ella</NavLink></li>
             </ul>
             <ul>
-              <li><NavLink to=''>Fragancias para hombre</NavLink></li>
-              <li><NavLink to=''>Alien Man</NavLink></li>
-              <li><NavLink to=''>A*Man</NavLink></li>
-              <li><NavLink to=''>Estuches para él</NavLink></li>
+              <li className={styles.title}><NavLink to={`/category/${'masculino'}`}>Fragancias para hombre</NavLink></li>
+              <li className={styles.option}><NavLink to={`/category/${'alien Man'}`}>Alien Man</NavLink></li>
+              <li className={styles.option}><NavLink to={`/category/${'A Men'}`}>A Men</NavLink></li>
+              <li className={styles.option}><NavLink to=''>Estuches para él</NavLink></li>
             </ul>
             <ul>
-              <li><NavLink to=''>Productos Exclusivos</NavLink></li>
-              <li><NavLink to=''>Les Exceptions</NavLink></li>
-              <li><NavLink to=''>Mugler Cologne</NavLink></li>
-              <li><NavLink to=''>Frascos de recarga</NavLink></li>
+              <li className={styles.title}><NavLink to=''>Productos Exclusivos</NavLink></li>
+              <li className={styles.option}><NavLink to=''>Les Exceptions</NavLink></li>
+              <li className={styles.option}><NavLink to=''>Mugler Cologne</NavLink></li>
+              <li className={styles.option}><NavLink to=''>Frascos de recarga</NavLink></li>
             </ul>
           </div>
         </div>

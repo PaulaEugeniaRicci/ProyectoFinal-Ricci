@@ -1,9 +1,10 @@
 import { useState } from 'react';
 
-const ItemCount = ({ stock }) => {
+const ItemCount = ({ addToCart, stock }) => {
 
   const styles = {
     symbol: "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 cursor-pointer text-gray-400 border border-gray-400 w-7 h-7 flex items-center justify-center p-0.5",
+    button: "btn select-none uppercase text-sm text-white bg-black p-3 nexa",
     counter: "border border-x-1 border-x-white border-y-gray-400 text-gray-600 h-full text-center w-24 p-0.5",
   }
 
@@ -19,6 +20,10 @@ const ItemCount = ({ stock }) => {
     if (counter > 1) {
       setCounter(counter - 1)
     }
+  }
+
+  const addHandler = () => {
+    addToCart(counter)
   }
 
   return (
@@ -40,7 +45,9 @@ const ItemCount = ({ stock }) => {
             </span>
           </div>
         </div>
-       
+        <button className={styles.button} onClick={ addHandler }>
+          A<span className='font-sans font-bold'>ñ</span>adir al carrito
+        </button>
       </div>
     </div>
   );

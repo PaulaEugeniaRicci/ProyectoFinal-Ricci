@@ -1,7 +1,7 @@
 const footer = () => {
   return (
-    <footer className="footer pt-5 ">
-      <div className="flex flex-col text-center bg-black py-4 text-white text-sm">
+    <footer className="footer pt-6 ">
+      <div className="flex flex-col text-center bg-black py-5 text-white text-sm">
         <p>© <a href='https://www.mugler.es/' target='_blank'>Mugler</a> 2021</p> 
         <div className='flex flex-row justify-center items-center gap-x-2 pt-1'>
           <p>Desarrollado por Paula E. Ricci</p> |
