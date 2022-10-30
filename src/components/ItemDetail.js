@@ -1,8 +1,7 @@
-import ItemCount from "./ItemCount";
+import { useContext, useState } from "react"
 import { CartContext } from '../context/CartContext';
-import { useContext } from "react"
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import ItemCount from "./ItemCount";
 import { currencyFormat } from "../helpers/currencyFormat";
 
 const ItemDetail = ({ item }) => {
@@ -19,7 +18,7 @@ const ItemDetail = ({ item }) => {
   const addToCart = (quantity) => {
     addItem(item, quantity)
     setIsInCart(true)
-}
+  }
 
   return (
     <>

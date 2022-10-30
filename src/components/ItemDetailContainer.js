@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import ItemDetail from './ItemDetail';
 import { useParams } from 'react-router-dom';
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase/firebase";
+import ItemDetail from './ItemDetail';
 
 const ItemDetailContainer = ( ) => {
 
@@ -27,23 +27,6 @@ const ItemDetailContainer = ( ) => {
       }
     })
   }, [])
-
-
-  /*useEffect(() => {
-    getItemDetails().then( response => {
-      console.log(response)
-      setItem( response )
-      setloading(false)
-    })
-  }, [])
-  
-  const getItemDetails = () => {
-    return new Promise( resolve => {
-      setTimeout(() => {
-        resolve( products.find( p => p.id === Number(itemId) ) )
-      }, 2000);
-    })
-  }*/
 
   return (
     <div className="">

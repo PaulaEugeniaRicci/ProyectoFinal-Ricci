@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
-import Item from './Item';
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebase/firebase";
+import Item from './Item';
 
 const ItemList = ( ) => {
 
@@ -32,7 +32,6 @@ const ItemList = ( ) => {
         setItems(snapshot.docs.map((doc) => ({id: doc.id, ...doc.data() })))
       });
     }
-   
   },[id])
   
   return (

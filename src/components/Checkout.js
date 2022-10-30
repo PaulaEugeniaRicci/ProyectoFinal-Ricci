@@ -1,11 +1,10 @@
-import { CartContext } from '../context/CartContext';
 import { useState, useContext } from 'react';
+import { CartContext } from '../context/CartContext';
 import { Link } from "react-router-dom";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 import { IoIosArrowBack } from "react-icons/io";
 import { GoPackage } from "react-icons/go";
-
 
 const Checkout = () => {
 
@@ -27,8 +26,6 @@ const Checkout = () => {
     email: "",
     emailConfirmation: "",
   })
-
-  console.log(idOrder)
 
   const emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i
   const telRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{1,6}$/im
@@ -128,4 +125,4 @@ const Checkout = () => {
   )
 }
 
-export default Checkout
+export default Checkout;

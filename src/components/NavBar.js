@@ -1,9 +1,9 @@
-import logo from '../assets/img/brand_logo.png';
-import "../assets/css/Styles.css";
-import CartWidget from "./CartWidget";
-import { HiMenu } from "react-icons/hi";
 import { useState } from 'react';
 import { Link, NavLink } from "react-router-dom";
+import CartWidget from "./CartWidget";
+import { HiMenu } from "react-icons/hi";
+import "../assets/css/Styles.css";
+import logo from '../assets/img/brand_logo.png';
 
 const NavBar = () => {
 

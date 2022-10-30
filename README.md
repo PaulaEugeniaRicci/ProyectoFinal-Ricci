@@ -5,7 +5,7 @@
 - Comisión: 38095
 - Docente: Adrián Escalante
 - Alumna: Paula Ricci
-- Proyecto final: 
+- Deploy Proyecto final: 
 
 ## Acerca del Proyecto
 La consigna es realizar una app e-commerce con todos sus componentes principales.
@@ -15,7 +15,7 @@ El diseño elegido para este proyecto está inspirado en la web de fragancias de
 - HTML5
 - CSS
 - JavaScript
-- React
+- React.js
 - Tailwind
 - Firebase
 - Git
