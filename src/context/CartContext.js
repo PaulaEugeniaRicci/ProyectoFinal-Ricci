@@ -26,7 +26,7 @@ const CartContextProvider = ( {children} ) => {
   const getSubtotal = (price, quantity) => {
     let subtotal = 0
     subtotal = subtotal + (price * quantity)
-    return currencyFormat.format(Number(subtotal))
+    return currencyFormat(Number(subtotal))
   }
 
   const getTotal = () => {
@@ -34,7 +34,7 @@ const CartContextProvider = ( {children} ) => {
     items.forEach((item) => {
        total = total + (item.quantity * item.price)
     })
-    return currencyFormat.format(Number(total))
+    return currencyFormat(Number(total))
   }
 
   const clearCart = () => {
