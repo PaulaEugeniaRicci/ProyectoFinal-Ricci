@@ -5,7 +5,7 @@
 - Comisión: 38095
 - Docente: Adrián Escalante
 - Alumna: Paula Ricci
-- Deploy Proyecto final: 
+- Deploy Proyecto final: https://paulaeugeniaricci.github.io/ProyectoFinal-Ricci
 
 ## Acerca del Proyecto
 La consigna es realizar una app e-commerce con todos sus componentes principales.
@@ -20,6 +20,6 @@ El diseño elegido para este proyecto está inspirado en la web de fragancias de
 - Firebase
 - Git
 
-## Gif prueba de navegacion
+## Gif prueba de navegacion 2da Pre-Entrega
 
 <img src="/PreEntrega2-Ricci.gif"/>
