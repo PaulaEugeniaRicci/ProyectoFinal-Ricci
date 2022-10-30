@@ -5,7 +5,7 @@ import ItemDetailContainer from "./components/ItemDetailContainer";
 import Footer from "./components/Footer"; 
 import Cart from "./components/Cart"; 
 import Checkout from "./components/Checkout"; 
-import { BrowserRouter, Route, Routes, HashRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { CartContextProvider } from './context/CartContext';
 
 function App() {
@@ -13,17 +13,17 @@ function App() {
     <>
     <CartContextProvider>
     <div className='min-h-screen'>
-        <HashRouter>
-        {/* <BrowserRouter> fue reemplazado por HashRouter para funcionar en github pages*/ }
+        <BrowserRouter>
           <NavBar/>
           <Routes>
-            <Route path='/#' element={<ItemListContainer/>} />
+            <Route path='/' element={<ItemListContainer/>} />
+            <Route path='/ProyectoFinal-Ricci' element={<ItemListContainer/>} />
             <Route path='/category/:id' element={<ItemListContainer/>} />
             <Route path='/item/:id' element={<ItemDetailContainer/>} />
             <Route path='/cart' element={<Cart/>} />
             <Route path='/checkout' element={<Checkout/>} />
           </Routes>
-        </HashRouter>
+        </BrowserRouter>
       </div>
     </CartContextProvider>
     <Footer/>
