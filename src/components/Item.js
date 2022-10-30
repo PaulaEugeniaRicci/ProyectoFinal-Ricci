@@ -4,14 +4,14 @@ import { currencyFormat } from "../helpers/currencyFormat";
 const Item = ( {item} ) => {
 
   const styles = {
-    text: "nexa-bold tracking-wider",
+    text: "nexa-bold tracking-wider h-14",
     price: "font-semibold mt-7 text-base tracking-wider",
     button: "btn select-none uppercase text-sm text-white bg-black py-3 px-9 mt-3 nexa"
   }
 
   return (
-    <div className="group m-5 pt-5">
-      <Link to={`/item/${item.id}`}>
+    <div className="group m-5 pt-5 h-full">
+      <Link to={`/item/${item.id}`} className="">
         <div className='overflow-hidden relative'>
           <img src={item.image} alt={item.title} className="duration-500 group-hover:opacity-0"/>
           <img src={item.image2} alt={item.title} className="scale-95 absolute top-0 -z-50"/>
