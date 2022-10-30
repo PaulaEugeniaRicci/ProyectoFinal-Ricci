@@ -3,23 +3,21 @@ import { useState, useContext } from 'react';
 import { Link } from "react-router-dom";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase/firebase";
-import { IoIosArrowBack, IoMdArrowBack } from "react-icons/io";
+import { IoIosArrowBack } from "react-icons/io";
+import { GoPackage } from "react-icons/go";
+
 
 const Checkout = () => {
 
   const styles = {
-    input: "focus:outline-none border-b border-gray-900 placeholder-gray-700 px-2 py-4 w-full ",
-    
-    title: "font-medium text-lg text-gray-800 tracking-wider leading-tight uppercase",
-    text: "font-light text-sm text-gray-600 tracking-wide leading-normal",
-    highlight: "font-medium text-xs text-gray-700 tracking-wider leading-loose uppercase",
-    button: "font-medium text-xxs text-gray-700 tracking-wider leading-normal uppercase select-none",
-    symbol: "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 cursor-pointer text-gray-400 border border-gray-400 w-7 h-7 flex items-center justify-center p-0.5",
-    counter: "border border-x-1 border-x-white border-y-gray-400 text-gray-600 h-full text-center w-5 p-0.5"
-}
+    input: "focus:outline-none border-b border-gray-900 placeholder-gray-700 px-2 pt-4 mb-4 w-full ",
+    title: "uppercase leading-loose tracking-wider font-medium text-center nexa-bold",
+    text: "tracking-wide leading-none nexa-light",
+    highlight: "lowercase flex flex-row items-center mb-4 nexa-light",
+    button: "focus:outline-none focus:ring-transparent text-center btn select-none uppercase text-sm text-white py-3 px-9 mt-6 w-full nexa"
+  }
 
-  const {items, clearCart, cartLength, getTotal} = useContext(CartContext)
-  //const { cartItems, cartLenght, clearCart, getTotal } = useContext(CartContext)
+  const {items, cartLength, getTotal} = useContext(CartContext)
   const [idOrder, setIdOrder] = useState("")
   const [showModal, setShowModal] = useState(false)
   const [buyer, setBuyer] = useState({
@@ -62,59 +60,52 @@ const Checkout = () => {
         <div className="flex w-full flex-col lg:flex-row justify-start items-start">
           <div className="flex flex-col justify-start items-start w-full mt-6 lg:mt-0 mb-3">
             <form className="space-y-6">
-              <h2 className={styles.highlight}>Datos de facturación</h2>
-              <input className={styles.input} type="text" name="name" required onChange={handleUpdateBuyer} placeholder="Nombre*"/>
-              <input className={styles.input} type="text" name="surname" required onChange={handleUpdateBuyer} placeholder="Apellido*"/>
-              <input className={styles.input} type="tel" name="telephone" required onChange={handleUpdateBuyer} placeholder="Teléfono*"/>
-              <input className={styles.input} type="email" name="email" required onChange={handleUpdateBuyer} placeholder="E-mail*"/>
-              <input className={styles.input} type="email" name="emailConfirmation" required onChange={handleUpdateBuyer} placeholder="Confirmar e-mail*"/>
+              <h2 className={(styles.title) + " pb-1"}>Datos de facturaci<span className="font-bold font-['Arial']">ó</span>n</h2>
+              <input className={styles.input + styles.text} type="text" name="name" required onChange={handleUpdateBuyer} placeholder="Nombre"/>
+              <input className={styles.input + styles.text} type="text" name="surname" required onChange={handleUpdateBuyer} placeholder="Apellido"/>
+              <input className={styles.input + styles.text} type="tel" name="telephone" required onChange={handleUpdateBuyer} placeholder="Telefono"/>
+              <input className={styles.input + styles.text} type="email" name="email" required onChange={handleUpdateBuyer} placeholder="E-mail"/>
+              <input className={styles.input + styles.text} type="email" name="emailConfirmation" required onChange={handleUpdateBuyer} placeholder="Confirmar e-mail"/>
             </form>
             
             {buyer.name && buyer.surname && buyer.telephone && (buyer.email === buyer.emailConfirmation) 
             && telRegex.test(buyer.telephone) && emailRegex.test(buyer.email, buyer.emailConfirmation) ? (
               
-              <input onClick={() => { orderHandler(); setShowModal(true) }} 
-                className="focus:outline-none focus:ring-transparent w-full text-center btn select-none uppercase text-sm text-white bg-black py-3 px-9 mt-6 cursor pointer"
-                type="submit" value="Continuar" />
-                ) : (
-              
-                <input className="focus:outline-none focus:ring-transparent w-full text-center btn select-none uppercase text-sm text-white bg-gray-400 py-3 px-9 mt-6"
-                type="submit" value="Continuar" disabled 
-                />
-                )
-              }
-            </div>
+              <input 
+                onClick={() => { orderHandler(); setShowModal(true) }} 
+                className={(styles.button) + " bg-black cursor pointer"} type="submit" value="Continuar"
+              />
+              ) : (
+                <input className={(styles.button) + " bg-gray-400"} type="submit" value="Continuar" disabled/>
+              )
+            }
+          </div>
 
-            <div className="flex flex-col self-start w-full md:w-1/2 ml-6">
-              <h2 className={styles.highlight}>Resumen de Compra</h2>
-              <div className="flex flex-col border border-gray-200 p-4 mt-6">
-                <div className={"flex flex-row justify-between " + (styles.text)}>
-                  <p>Cantidad de items:</p>
-                  <p>{cartLength}</p>
-                </div>
-                <div className={"flex flex-row justify-between " + (styles.text)}>
-                  <p>Gastos de envío:</p>
-                  <p>¡Envío gratis!</p>
-                </div>
-                <div className={"flex flex-row justify-between font-semibold mt-10 " + (styles.highlight)}>
-                  <p>Subtotal:</p>
-                  <p>{cartLength}</p>
-                </div>
-                <div className={"flex flex-row justify-between font-semibold mt-10 " + (styles.highlight)}>
-                  <p>Total:</p>
-                  <p>{cartLength}</p>
-                </div>
+          <div className="flex flex-col self-start w-full md:w-1/2 ml-10">
+            <div className="flex flex-col border border-gray-200 rounded-lg py-4 px-5 mt-6">
+            <h2 className={(styles.title) + " border-b border-gray-200 py-5"}>Resumen de Compra</h2>
+              <div className={"flex flex-row justify-between border-b border-gray-200" + (styles.text)}>
+                <p className='leading-loose py-5 px-2'>Cantidad de items</p>
+                <p className='leading-loose py-5 px-2'>{cartLength()}</p>
               </div>
-              <Link to='/cart' className={(styles.highlight) + ' lowercase flex flex-row items-center self-start mb-4'}>
-                <IoIosArrowBack className="mr-1"/>Seguir comprando
+              <div className="flex flex-row font-medium border-b border-gray-200 nexa">
+                <p className='leading-loose py-5 px-2'>Costo de env<span className='font-sans'>í</span>o - Gratis</p>
+              </div>
+              <div className="flex flex-row justify-between font-semibold border-b border-gray-200">
+                <p className={(styles.title) + ' py-5 px-2 text-lg'}>Total</p>
+                <p className='leading-loose py-5 px-2 text-lg'>{getTotal()}</p>
+              </div>
+              <Link to='/cart' className={(styles.highlight) + " pt-6 justify-center"}>
+                <IoIosArrowBack className="mr-1"/>Volver a carrito
               </Link>
             </div>
-          </div>            
-                        
-            </div>
-        </div>
-        </>
-    )
+            
+          </div>
+        </div>            
+      </div>
+    </div>
+  </>
+  )
 }
 
 export default Checkout

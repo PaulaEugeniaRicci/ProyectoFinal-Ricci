@@ -73,7 +73,7 @@ const Cart = () => {
             <div className={"flex flex-row justify-between " + (styles.text)}>
               <p className='nexa font-medium'>
                 Costo de env<span className='font-sans'>í</span>o - Gratis
-                </p>
+              </p>
             </div>
             <div className="flex flex-row justify-between font-semibold pt-3 ">
               <p className={(styles.title) + ' text-base'}>Total</p>
