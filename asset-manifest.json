@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/ProyectoFinal-Ricci/static/css/main.356afa71.css",
-    "main.js": "/ProyectoFinal-Ricci/static/js/main.ff02c6b5.js",
+    "main.js": "/ProyectoFinal-Ricci/static/js/main.c01c251a.js",
     "static/media/NexaText-Trial-Regular.woff": "/ProyectoFinal-Ricci/static/media/NexaText-Trial-Regular.3e2e0dc669e7b20d7a52.woff",
     "static/media/Nexa-Trial-ExtraBold.woff": "/ProyectoFinal-Ricci/static/media/Nexa-Trial-ExtraBold.ef16b7010d1a2659045e.woff",
     "static/media/Nexa-Trial-Bold.woff": "/ProyectoFinal-Ricci/static/media/Nexa-Trial-Bold.c2663801a639a7bc718b.woff",
     "static/media/Nexa-Trial-Light.woff": "/ProyectoFinal-Ricci/static/media/Nexa-Trial-Light.ddadefb0213dfdffe6f1.woff",
     "index.html": "/ProyectoFinal-Ricci/index.html",
     "main.356afa71.css.map": "/ProyectoFinal-Ricci/static/css/main.356afa71.css.map",
-    "main.ff02c6b5.js.map": "/ProyectoFinal-Ricci/static/js/main.ff02c6b5.js.map"
+    "main.c01c251a.js.map": "/ProyectoFinal-Ricci/static/js/main.c01c251a.js.map"
   },
   "entrypoints": [
     "static/css/main.356afa71.css",
-    "static/js/main.ff02c6b5.js"
+    "static/js/main.c01c251a.js"
   ]
 }
